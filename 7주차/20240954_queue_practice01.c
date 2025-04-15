@@ -37,7 +37,7 @@ bool enqueue(LinearQueue *q, int value) {
 }
 
 // 삭제 함수
-bool dequeue(LinearQueue *q) {
+int dequeue(LinearQueue *q) {
     if (isEmpty(q)) {
         printf("Queue is empty!\n");
         return false;
