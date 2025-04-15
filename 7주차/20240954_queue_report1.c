@@ -1,38 +1,38 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-#define SIZE 30 // 큐의 크기 30으로 설정
+#define SIZE 30  // 큐의 크기 30
 
 typedef struct {
-    int value[SIZE];
-    int front;
-    int rear;
+    int data[SIZE];  // 고정된 크기의 배열
+    int front;  // 큐의 첫 번째 요소 인덱스
+    int rear;   // 큐의 마지막 요소 인덱스
 } LinearQueue;
 
 // 초기화 함수
 void initQueue(LinearQueue *q) {
-    q -> front = 0;
-    q -> rear = -1;
+    q->front = 0;
+    q->rear = -1;  // rear를 -1로 설정하여 첫 번째 삽입 시 0이 되도록 함
 }
 
-// 큐가 비어있는지 확인
+// 큐가 비어 있는지 확인
 bool isEmpty(LinearQueue *q) {
-    return (q -> rear < q -> front);
+    return q->rear < q->front;  // rear가 front보다 작으면 비어 있음
 }
 
 // 큐가 가득 찼는지 확인
 bool isFull(LinearQueue *q) {
-    return (q -> rear == SIZE - 1);
+    return q->rear == SIZE - 1;  // rear가 배열 끝에 도달하면 가득 참
 }
 
 // 삽입 함수
 bool enqueue(LinearQueue *q, int value) {
     if (isFull(q)) {
-        printf("Queue is full!\n");
+        printf("큐가 가득 찼습니다.\n");
         return false;
     }
-    q -> rear++;
-    q -> value[(q -> rear)] = value;
+    q->rear++;
+    q->data[q->rear] = value;  // rear 위치에 데이터 추가
     return true;
 }
 
@@ -43,7 +43,7 @@ int dequeue(LinearQueue *q) {
         initQueue(q); // 큐를 초기화
         return false;
     }
-    int value = q -> value[q -> front];
+    int value = q -> data[q -> front];
     q -> front++;
     return value;
 }
@@ -56,7 +56,7 @@ void printQueue(LinearQueue *q) {
     }
     printf("큐 데이터: ");
     for (int i = q->front; i <= q->rear; i++) {
-        printf("%d ", q->value[i]);
+        printf("%d ", q->data[i]);
     }
     printf("\n");
 }
