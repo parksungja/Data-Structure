@@ -161,6 +161,7 @@ int main() {
     searchRange(root, 6, 20);                 // 함수 작성
     printf("\n");
 		
-		freeTree(root);
+    freeTree(root);
+    
     return 0;
 }
